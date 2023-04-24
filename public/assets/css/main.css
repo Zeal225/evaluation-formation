@@ -1,0 +1,30 @@
+.auth-one-bg{
+    background-image: url(../images/img/logo-cgrae.png) !important;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.logo-cgrae{
+    color: white;
+    font-size: 2.5em;
+    letter-spacing: .8rem;
+}
+
+.auth-one-bg .bg-overlay {
+    background: -webkit-gradient(linear,left top,right top,from(#41319c),to(rgb(11 66 52)));
+    background: linear-gradient(to right,rgb(161 73 13 / 79%),rgb(161 73 13 / 75%));
+    opacity: .9;
+}
+
+.logo-dashboard{
+    color: white;
+    font-weight: bold;
+    letter-spacing: 1rem;
+    font-size: 1.5rem;;
+}
+
+.menu-title span {
+    color: white !important;
+}
+
