@@ -33,7 +33,7 @@
     <!-- custom Css-->
     <link href="{{ asset('assets/css/custom.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset("/assets/css/main.css") }}" rel="stylesheet" type="text/css" />
-
+    <link href="{{ asset("/assets/libs/sweetalert2/sweetalert2.min.css") }}" rel="stylesheet" type="text/css" />
 
 
 </head>
@@ -365,11 +365,11 @@
                         </button>
                         <div class="dropdown-menu dropdown-menu-end">
                             <!-- item-->
-                            <h6 class="dropdown-header">Welcome Alimatou!</h6>
-                            <a class="dropdown-item" href="pages-profile.html"><i class="mdi mdi-account-circle text-muted fs-16 align-middle me-1"></i> <span class="align-middle">Profile</span></a>
-                            <a class="dropdown-item" href="apps-chat.html"><i class="mdi mdi-message-text-outline text-muted fs-16 align-middle me-1"></i> <span class="align-middle">Messages</span></a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="auth-logout-basic.html"><i class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i> <span class="align-middle" data-key="t-logout">Logout</span></a>
+                            <form class="text-center" action="{{ route("deconnexion") }}" method="post">
+                                @csrf
+                                <button style="box-shadow: none;" type="submit" class="align-middle btn btn-link text-decoration-none text-muted m-0 p-0 align-middle w-100 p-2"><i class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i>Déconnexion</button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -377,97 +377,7 @@
         </div>
     </header>
     <!-- ========== App Menu ========== -->
-    <div class="app-menu navbar-menu">
-        <!-- LOGO -->
-        <div class="navbar-brand-box">
-            <!-- Dark Logo-->
-            <a href="index.html" class="logo logo-dark">
-                    <span class="logo-sm">
-                        <span class="logo-dashboard">CGRAE</span>
-                    </span>
-                <span class="logo-lg">
-                        <span class="logo-dashboard">CGRAE</span>
-                    </span>
-            </a>
-            <!-- Light Logo-->
-            <a href="index.html" class="logo logo-light">
-                    <span class="logo-sm">
-                        <span class="logo-dashboard">CGRAE</span>
-                    </span>
-                <span class="logo-lg">
-                        <span class="logo-dashboard">CGRAE</span>
-                    </span>
-            </a>
-            <button type="button" class="btn btn-sm p-0 fs-20 header-item float-end btn-vertical-sm-hover" id="vertical-hover">
-                <i class="ri-record-circle-line"></i>
-            </button>
-        </div>
-
-        <div id="scrollbar">
-            <div class="container-fluid">
-
-                <div id="two-column-menu">
-                </div>
-                <ul class="navbar-nav" id="navbar-nav">
-
-                    <li class="menu-title"><span data-key="t-menu">Gestion des Formations</span></li>
-                    <li class="nav-item">
-                        <a class="nav-link menu-link" href="widgets.html">
-                            <i class="mdi mdi-image-filter-center-focus-weak"></i> <span>Objectifs</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link menu-link" href="widgets.html">
-                            <i class="mdi mdi-bookshelf"></i> <span>Formations</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link menu-link" href="widgets.html">
-                            <i class="mdi mdi-bus-stop-uncovered"></i> <span>Formateurs</span>
-                        </a>
-                    </li>
-
-                    <li class="menu-title"><span data-key="t-menu">Gestion des Agents</span></li>
-                    <li class="nav-item">
-                        <a class="nav-link menu-link" href="widgets.html">
-                            <i class="mdi mdi-account-supervisor"></i> <span>Agents</span>
-                        </a>
-                    </li><!-- end Dashboard Menu -->
-
-
-                    <li class="menu-title"><span data-key="t-menu">Evaluations Des formations</span></li>
-                    <li class="nav-item">
-                        <a class="nav-link menu-link" href="widgets.html">
-                            <i class="mdi mdi-notebook-edit"></i> <span>Evaluation Chaud</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link menu-link" href="widgets.html">
-                            <i class="mdi mdi-notebook-multiple"></i> <span>Evaluation Froid</span>
-                        </a>
-                    </li>
-
-                    <li class="menu-title"><span data-key="t-menu">Gestion des utilisateurs</span></li>
-                    <li class="nav-item">
-                        <a class="nav-link menu-link" href="widgets.html">
-                            <i class="mdi mdi-account-circle-outline"></i> <span>Utilisateurs</span>
-                        </a>
-                    </li>
-
-                    <li class="menu-title"><span data-key="t-menu">Gestion Authentification</span></li>
-                    <li class="nav-item">
-                        <a class="nav-link menu-link" href="widgets.html">
-                            <i class="mdi mdi-logout"></i> <span>Déconnexion</span>
-                        </a>
-                    </li>
-
-                </ul>
-            </div>
-            <!-- Sidebar -->
-        </div>
-
-        <div class="sidebar-background"></div>
-    </div>
+    @include("layouts.menu")
     <!-- Left Sidebar End -->
     <!-- Vertical Overlay-->
     <div class="vertical-overlay"></div>
@@ -547,8 +457,62 @@
 <!-- App js -->
 <script src="{{ asset('assets/js/app.js') }}"></script>
 
+<!-- prismjs plugin -->
+<script src="{{ asset("/assets/libs/prismjs/prism.js") }}"></script>
+<script src="{{ asset("/assets/libs/list.js/list.min.js") }}"></script>
+<script src="{{ asset("/assets/libs/list.pagination.js/list.pagination.min.js") }}"></script>
 
+<!-- listjs init -->
+<script src="{{ asset("/assets/js/pages/listjs.init.js") }}"></script>
+<script src="{{ asset("/assets/libs/sweetalert2/sweetalert2.min.js") }}"></script>
 
+<script src="{{ asset("/assets/js/pages/sweetalerts.init.js") }}"></script>
+<script>
+    $(function () {
+        $(".delete-user").on("click", function (event) {
+            event.preventDefault();
+            var link = $(this).attr("href");
+            Swal.fire({
+                title: "Attention !",
+                text: "Etes-vous sûr de vouloir supprimer cet utilisateur ?",
+                icon: "warning",
+                showCancelButton: !0,
+                confirmButtonClass: "btn btn-primary w-xs me-2 mt-2",
+                cancelButtonClass: "btn btn-danger w-xs mt-2",
+                confirmButtonText: "Oui, je supprime!",
+                cancelButtonText: "Non, annuler!",
+                buttonsStyling: !1,
+                showCloseButton: !0,
+            }).then(function (t) {
+                if (t.value){
+                    window.location = link;
+                }
+            });
+        })
+
+        $(".delete-cabinet").on("click", function (event) {
+            event.preventDefault();
+            var link = $(this).attr("href");
+            Swal.fire({
+                title: "Attention !",
+                text: "Etes-vous sûr de vouloir supprimer cet cabinet ?",
+                icon: "warning",
+                showCancelButton: !0,
+                confirmButtonClass: "btn btn-primary w-xs me-2 mt-2",
+                cancelButtonClass: "btn btn-danger w-xs mt-2",
+                confirmButtonText: "Oui, je supprime!",
+                cancelButtonText: "Non, annuler!",
+                buttonsStyling: !1,
+                showCloseButton: !0,
+            }).then(function (t) {
+                if (t.value){
+                    window.location = link;
+                }
+            });
+        })
+
+    })
+</script>
 </body>
 
 </html>

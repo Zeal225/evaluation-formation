@@ -64,20 +64,20 @@
                                         </div>
 
                                         <div class="mt-4">
-                                            <form action="index.html">
-
+                                            <form action="{{ route("connexion_ok") }}" method="post">
+                                                @csrf
                                                 <div class="mb-3">
-                                                    <label for="username" class="form-label">Login</label>
-                                                    <input type="text" class="form-control" id="username" placeholder="Entrer votre login">
+                                                    <label for="email" class="form-label">Email</label>
+                                                    <input name="email" type="email" class="form-control" id="email" placeholder="Entrer votre email">
                                                 </div>
 
                                                 <div class="mb-3">
                                                     <div class="float-end">
 
                                                     </div>
-                                                    <label class="form-label" for="password-input">Mot de passe</label>
+                                                    <label class="form-label" for="password">Mot de passe</label>
                                                     <div class="position-relative auth-pass-inputgroup mb-3">
-                                                        <input type="password" class="form-control pe-5" placeholder="Entrer votre mot de passe" id="password-input">
+                                                        <input type="password" name="password" class="form-control pe-5" placeholder="Entrer votre mot de passe" id=password">
                                                         <button class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted shadow-none" type="button" id="password-addon"><i class="ri-eye-fill align-middle"></i></button>
                                                     </div>
                                                 </div>
