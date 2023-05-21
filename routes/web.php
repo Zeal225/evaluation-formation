@@ -49,13 +49,22 @@ Route::middleware(['rediriger_si_utilisateur_connecte'])->group(function () {
     Route::get("/cabinet/supprimer/{id}","App\Http\Controllers\CabinetController@supprimerCabinet")->name("supprimer_cabinets");
 
 
+    //formateur
+    Route::get("/formateurs","App\Http\Controllers\FormateurController@listeFormateur")->name("liste_formateurs");
+    Route::get("/formateur/ajouter","App\Http\Controllers\FormateurController@formulaireAjouterFormateur")->name("formulaire_ajouter_formateur");
+    Route::post("/formateur/ajouter","App\Http\Controllers\FormateurController@ajouterFormateur")->name("ajouter_formateur");
+    Route::get("/formateur/modifier/{id}","App\Http\Controllers\FormateurController@formulaireModifierFormateur")->name("formulaire_modifier_formateur");
+    Route::post("/formateur/modifier","App\Http\Controllers\FormateurController@modifierFormateur")->name("modifier_formateur");
+    Route::get("/formateur/supprimer/{id}","App\Http\Controllers\FormateurController@supprimerFormateur")->name("supprimer_formateur");
+
+
 
     Route::get('/utilisateurs/add', function () {
         return view('utilisateur_ajouter');
     });
-    Route::get('/formateur', function () {
+    /*Route::get('/formateur', function () {
         return view('formateur');
-    });
+    });*/
     Route::get('/objectif', function () {
         return view('objectif');
     });

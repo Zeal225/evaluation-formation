@@ -511,6 +511,27 @@
             });
         })
 
+        $(".delete-formateur").on("click", function (event) {
+            event.preventDefault();
+            var link = $(this).attr("href");
+            Swal.fire({
+                title: "Attention !",
+                text: "Etes-vous sûr de vouloir supprimer cet formateur ?",
+                icon: "warning",
+                showCancelButton: !0,
+                confirmButtonClass: "btn btn-primary w-xs me-2 mt-2",
+                cancelButtonClass: "btn btn-danger w-xs mt-2",
+                confirmButtonText: "Oui, je supprime!",
+                cancelButtonText: "Non, annuler!",
+                buttonsStyling: !1,
+                showCloseButton: !0,
+            }).then(function (t) {
+                if (t.value){
+                    window.location = link;
+                }
+            });
+        })
+
     })
 </script>
 </body>
