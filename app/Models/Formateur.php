@@ -11,7 +11,10 @@ class Formateur extends Model
 
     protected $table = "formateurs";
     protected $primaryKey = "id";
-    protected $fillable = ["nom_formateur", "prenom_formateur", "email_formateur", "tel_formateur", "specialite_formateur", "cabinet_id", "password"];
+    protected $fillable = ["nom_formateur",
+        "prenom_formateur", "email_formateur",
+        "tel_formateur", "specialite_formateur",
+        "cabinet_id", "password"];
 
     public function cabinet()
     {

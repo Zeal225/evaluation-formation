@@ -57,6 +57,13 @@ Route::middleware(['rediriger_si_utilisateur_connecte'])->group(function () {
     Route::post("/formateur/modifier","App\Http\Controllers\FormateurController@modifierFormateur")->name("modifier_formateur");
     Route::get("/formateur/supprimer/{id}","App\Http\Controllers\FormateurController@supprimerFormateur")->name("supprimer_formateur");
 
+    //objectif
+    Route::get("/objectifs","App\Http\Controllers\ObjectifController@listeObjectif")->name("liste_objectifs");
+    Route::get("/objectif/ajouter","App\Http\Controllers\ObjectifController@formulaireAjouterObjectif")->name("formulaire_ajouter_objectif");
+    Route::post("/objectif/ajouter","App\Http\Controllers\ObjectifController@ajouterObjectif")->name("ajouter_objectif");
+    Route::get("/objectif/modifier/{id}","App\Http\Controllers\ObjectifController@formulaireModifierObjectif")->name("formulaire_modifier_objectif");
+    Route::post("/objectif/modifier","App\Http\Controllers\ObjectifController@modifierObjectif")->name("modifier_objectif");
+    Route::get("/objectif/supprimer/{id}","App\Http\Controllers\ObjectifController@supprimerObjectif")->name("supprimer_objectif");
 
 
     Route::get('/utilisateurs/add', function () {
@@ -65,9 +72,9 @@ Route::middleware(['rediriger_si_utilisateur_connecte'])->group(function () {
     /*Route::get('/formateur', function () {
         return view('formateur');
     });*/
-    Route::get('/objectif', function () {
+    /*Route::get('/objectif', function () {
         return view('objectif');
-    });
+    });*/
     Route::get('/objectif/add', function () {
         return view('objectif_ajouter');
     });

@@ -92,7 +92,7 @@
                                         <option @if($cabinet->id == old("cabinet_id")) selected @endif value="{{$cabinet->id}}">{{$cabinet->nom_cabinet}}</option>
                                     @endforeach
                                 </select>
-                                @error('cabinet')
+                                @error('cabinet_id')
                                 <span class="text-danger">
                                     {{ $message }}
                                 </span>

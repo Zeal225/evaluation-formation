@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\InsererFormateurRequest;
+use App\Http\Requests\ModifierFormateurRequest;
 use App\Models\Cabinet;
 use App\Models\Formateur;
 use App\Models\User;
@@ -24,7 +26,7 @@ class FormateurController extends Controller
         return view("formateur_ajouter", compact("cabinets"));
     }
 
-    public function ajouterFormateur(Request $request)
+    public function ajouterFormateur(InsererFormateurRequest $request)
     {
         DB::beginTransaction();
         $formateur = new Formateur();
@@ -65,7 +67,7 @@ class FormateurController extends Controller
         return view("formateur_modifier", compact("formateur", "cabinets"));
     }
 
-    public function modifierFormateur(Request $request){
+    public function modifierFormateur(ModifierFormateurRequest $request){
         DB::beginTransaction();
         $formateur = Formateur::find(decrypt($request->id));
         $formateur->nom_formateur = $request->nom_formateur;
