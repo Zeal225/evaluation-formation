@@ -72,6 +72,11 @@
                         <i class="mdi mdi-notebook-multiple"></i> <span>Evaluation Froid</span>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="{{ route("liste_categories") }}">
+                        <i class="mdi mdi-notebook-multiple"></i> <span>Catégorie Appréciation</span>
+                    </a>
+                </li>
 
                 <li class="menu-title"><span data-key="t-menu">Gestion des utilisateurs</span></li>
                 <li class="nav-item">
