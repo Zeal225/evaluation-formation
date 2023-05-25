@@ -73,6 +73,13 @@ Route::middleware(['rediriger_si_utilisateur_connecte'])->group(function () {
     Route::post("/categorieappreciations/modifier","App\Http\Controllers\CategorieAppreciationController@modifierCategorie")->name("modifier_categorie");
     Route::get("/categorieappreciations/supprimer/{id}","App\Http\Controllers\CategorieAppreciationController@supprimerCategorie")->name("supprimer_categorie");
 
+    //appreciations
+    Route::get("/appreciations","App\Http\Controllers\AppreciationController@listeAppreciation")->name("liste_appreciations");
+    Route::get("/appreciation/ajouter","App\Http\Controllers\AppreciationController@formulaireAjouterAppreciation")->name("formulaire_ajouter_appreciation");
+    Route::post("/appreciation/ajouter","App\Http\Controllers\AppreciationController@ajouterAppreciation")->name("ajouter_appreciation");
+    Route::get("/appreciation/modifier/{id}","App\Http\Controllers\AppreciationController@formulaireModifierAppreciation")->name("formulaire_modifier_appreciation");
+    Route::post("/appreciation/modifier","App\Http\Controllers\AppreciationController@modifierAppreciation")->name("modifier_appreciation");
+    Route::get("/appreciation/supprimer/{id}","App\Http\Controllers\AppreciationController@supprimerAppreciation")->name("supprimer_appreciation");
 
     Route::get('/utilisateurs/add', function () {
         return view('utilisateur_ajouter');
