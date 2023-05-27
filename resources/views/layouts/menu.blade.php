@@ -53,23 +53,21 @@
                     </a>
                 </li>
 
-                <li class="menu-title"><span data-key="t-menu">Gestion des Agents</span></li>
-                <li class="nav-item">
-                    <a class="nav-link menu-link" href="widgets.html">
-                        <i class="mdi mdi-account-supervisor"></i> <span>Agents</span>
-                    </a>
-                </li><!-- end Dashboard Menu -->
-
 
                 <li class="menu-title"><span data-key="t-menu">Evaluations Des formations</span></li>
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="widgets.html">
-                        <i class="mdi mdi-notebook-edit"></i> <span>Evaluation Chaud</span>
+                        <i class="mdi mdi-notebook-edit"></i> <span>Evaluation à Chaud</span>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="widgets.html">
-                        <i class="mdi mdi-notebook-multiple"></i> <span>Evaluation Froid</span>
+                        <i class="mdi mdi-notebook-multiple"></i> <span>Evaluation à Froid</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="{{ route("liste_appreciations") }}">
+                        <i class="mdi mdi-notebook-multiple"></i> <span>Appréciations</span>
                     </a>
                 </li>
                 <li class="nav-item">
@@ -82,6 +80,11 @@
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="{{ route("liste_utilisateurs") }}">
                         <i class="mdi mdi-account-circle-outline"></i> <span>Utilisateurs</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="{{ route("liste_type_utilisateurs") }}">
+                        <i class="mdi mdi-account-circle-outline"></i> <span>Type Utilisateurs</span>
                     </a>
                 </li>
 

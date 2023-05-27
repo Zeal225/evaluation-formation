@@ -81,6 +81,14 @@ Route::middleware(['rediriger_si_utilisateur_connecte'])->group(function () {
     Route::post("/appreciation/modifier","App\Http\Controllers\AppreciationController@modifierAppreciation")->name("modifier_appreciation");
     Route::get("/appreciation/supprimer/{id}","App\Http\Controllers\AppreciationController@supprimerAppreciation")->name("supprimer_appreciation");
 
+    //type utilisateur
+    Route::get("/typeutilisateurs","App\Http\Controllers\TypeUtilisateurController@listeTypeUtilisateur")->name("liste_type_utilisateurs");
+    Route::get("/typeutilisateur/ajouter","App\Http\Controllers\TypeUtilisateurController@formulaireAjouterTypeUtilisateur")->name("formulaire_ajouter_type_utilisateur");
+    Route::post("/typeutilisateur/ajouter","App\Http\Controllers\TypeUtilisateurController@ajouterTypeUtilisateur")->name("ajouter_type_utilisateur");
+    Route::get("/typeutilisateur/modifier/{id}","App\Http\Controllers\TypeUtilisateurController@formulaireModifierTypeUtilisateur")->name("formulaire_modifier_type_utilisateur");
+    Route::post("/typeutilisateur/modifier","App\Http\Controllers\TypeUtilisateurController@modifierTypeUtilisateur")->name("modifier_type_utilisateur");
+    Route::get("/typeutilisateur/supprimer/{id}","App\Http\Controllers\TypeUtilisateurController@supprimerTypeUtilisateur")->name("supprimer_type_utilisateur");
+
     Route::get('/utilisateurs/add', function () {
         return view('utilisateur_ajouter');
     });
