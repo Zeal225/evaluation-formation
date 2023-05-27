@@ -10,6 +10,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 
 class FormateurController extends Controller
@@ -46,8 +47,9 @@ class FormateurController extends Controller
         $user->nom_utilisateur = $request->email_formateur;
         $user->email = $request->email_formateur;
         $user->password = Hash::make($request->password);
-        $user->type_compte_utilisateur = "FORMATEUR";
-        $user->matricule_utilisateur = "MAT-".rand(1000, 9999).time();
+        $user->id_role = null;
+        $user->id_type_utilisateur = null;
+        $user->matricule_utilisateur = "FORMATEUR-".rand(1000, 9999).time();
         try {
             $formateur->save();
             $user->save();
@@ -55,6 +57,7 @@ class FormateurController extends Controller
             DB::commit();
             return redirect()->route("liste_formateurs");
         }catch (\Exception $e){
+            Log::info($e->getMessage());
             DB::rollBack();
             return redirect()->back();
         }
@@ -89,8 +92,6 @@ class FormateurController extends Controller
         $user->nom_utilisateur = $request->email_formateur;
         $user->email = $request->email_formateur;
         $user->password = Hash::make($request->password);
-        $user->type_compte_utilisateur = "FORMATEUR";
-        $user->matricule_utilisateur = "MAT-".rand(1000, 9999).time();
         try {
             $formateur->save();
             $user->save();

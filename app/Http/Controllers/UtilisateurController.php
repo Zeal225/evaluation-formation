@@ -37,7 +37,7 @@ class UtilisateurController extends Controller
     }
 
     public function listeutilisateur(){
-        $utilisateurs = User::with('typeUtilisateur', 'role')->orderBy("created_at", "desc")->get();
+        $utilisateurs = User::with('typeUtilisateur', 'role')->where("id_role", "!=", null)->orderBy("created_at", "desc")->get();
         return view('utilisateurs', compact('utilisateurs'));
     }
 
