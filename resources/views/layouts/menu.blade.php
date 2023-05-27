@@ -87,6 +87,11 @@
                         <i class="mdi mdi-account-circle-outline"></i> <span>Type Utilisateurs</span>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="{{ route("liste_roles") }}">
+                        <i class="mdi mdi-account-circle-outline"></i> <span>Rôle Utilisateurs</span>
+                    </a>
+                </li>
 
                 <li class="menu-title"><span data-key="t-menu">Gestion Authentification</span></li>
                 <li class="nav-item">

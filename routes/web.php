@@ -89,6 +89,16 @@ Route::middleware(['rediriger_si_utilisateur_connecte'])->group(function () {
     Route::post("/typeutilisateur/modifier","App\Http\Controllers\TypeUtilisateurController@modifierTypeUtilisateur")->name("modifier_type_utilisateur");
     Route::get("/typeutilisateur/supprimer/{id}","App\Http\Controllers\TypeUtilisateurController@supprimerTypeUtilisateur")->name("supprimer_type_utilisateur");
 
+    //roles
+    Route::get("/roles","App\Http\Controllers\RoleController@listeRole")->name("liste_roles");
+    Route::get("/role/ajouter","App\Http\Controllers\RoleController@formulaireAjouterRole")->name("formulaire_ajouter_role");
+    Route::post("/role/ajouter","App\Http\Controllers\RoleController@ajouterRole")->name("ajouter_role");
+    Route::get("/role/modifier/{id}","App\Http\Controllers\RoleController@formulaireModifierRole")->name("formulaire_modifier_role");
+    Route::post("/role/modifier","App\Http\Controllers\RoleController@modifierRole")->name("modifier_role");
+    Route::get("/role/supprimer/{id}","App\Http\Controllers\RoleController@supprimerRole")->name("supprimer_role");
+
+
+
     Route::get('/utilisateurs/add', function () {
         return view('utilisateur_ajouter');
     });
