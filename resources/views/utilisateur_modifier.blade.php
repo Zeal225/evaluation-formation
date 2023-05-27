@@ -59,7 +59,7 @@
                             <div class="col-lg-9">
 
                                 <select name="departement_utilisateur" class="form-select" aria-label="Default select example">
-                                    <option value="">Sélectionner un département</option>
+                                    <option value="">Sélectionnez un département</option>
                                     @foreach(\App\Tools::listeDepartements() as $key => $departement)
                                         <option @if($departement == old("departement_utilisateur") || $departement == $utilisateur->departement_utilisateur) selected @endif value="{{$departement}}">{{$departement}}</option>
                                     @endforeach
@@ -77,7 +77,7 @@
                             </div>
                             <div class="col-lg-9">
                                 <select name="service_utilisateur" class="form-select" aria-label="Default select example">
-                                    <option value="">Sélectionner un service</option>
+                                    <option value="">Sélectionnez un service</option>
                                     @foreach(\App\Tools::listeServices() as $key => $service)
                                         <option @if($service == old("service_utilisateur") || $service == $utilisateur->service_utilisateur) selected @endif value="{{$service}}">{{$service}}</option>
                                     @endforeach
@@ -94,7 +94,7 @@
                                 <label for="fonction_utilisateur" class="form-label">Fonction Utilisateur</label>
                             </div>
                             <div class="col-lg-9">
-                                <input value="{{ old("fonction_utilisateur") ?? $utilisateur->fonction_utilisateur }}" type="text" class="form-control" name="fonction_utilisateur" placeholder="Entrer la fonction de l'utilisateur">
+                                <input value="{{ old("fonction_utilisateur") ?? $utilisateur->fonction_utilisateur }}" type="text" class="form-control" name="fonction_utilisateur" placeholder="Entrez la fonction de l'utilisateur">
                                 @error('fonction_utilisateur')
                                 <span class="text-danger">
                                             {{ $message }}
@@ -104,16 +104,16 @@
                         </div>
                         <div class="row mb-3">
                             <div class="col-lg-3">
-                                <label for="type_compte_utilisateur" class="form-label">Type de compte</label>
+                                <label for="id_type_utilisateur" class="form-label">Type utilisateur (type compte)</label>
                             </div>
                             <div class="col-lg-9">
-                                <select name="type_compte_utilisateur" id="type_compte_utilisateur" class="form-select" aria-label="Default select example">
-                                    <option value="">Sélectionner le type de compte</option>
-                                @foreach(\App\Tools::listeTypeCompte() as $key => $compte)
-                                        <option @if($compte == old("type_compte_utilisateur") || $compte == $utilisateur->type_compte_utilisateur) selected @endif value="{{$compte}}">{{$compte}}</option>
+                                <select name="id_type_utilisateur" id="id_type_utilisateur" class="form-select" aria-label="Default select example">
+                                    <option value="">Sélectionnez le type de compte</option>
+                                @foreach($typeUtilisateurs as $key => $typeUtilisateur)
+                                        <option @if($typeUtilisateur->id == old("id_type_utilisateur") || $typeUtilisateur->id == $utilisateur->id_type_utilisateur) selected @endif value="{{$typeUtilisateur->id}}">{{ $typeUtilisateur->libelle_type_utilisateur }}</option>
                                     @endforeach
                                 </select>
-                                @error('type_compte_utilisateur')
+                                @error('id_type_utilisateur')
                                 <span class="text-danger">
                                             {{ $message }}
                                     </span>
@@ -127,7 +127,7 @@
                             </div>
                             <div class="col-lg-9">
                                 <select name="agence_utilisateur" id="agence_utilisateur" class="form-select" aria-label="Default select example">
-                                    <option value="">Sélectionner une agence</option>
+                                    <option value="">Sélectionnez une agence</option>
                                 @foreach(\App\Tools::listeAgence() as $key => $agence)
                                         <option @if($agence == old("agence_utilisateur") || $agence == $utilisateur->agence_utilisateur) selected @endif value="{{$agence}}">{{$agence}}</option>
                                     @endforeach
@@ -188,6 +188,24 @@
                                 <span class="text-danger">
                                     {{ $message }}
                                 </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-lg-3">
+                                <label for="id_role" class="form-label">Rôle Utilisateur</label>
+                            </div>
+                            <div class="col-lg-9">
+                                <select name="id_role" id="id_role" class="form-select" aria-label="Default select example">
+                                    <option value="">Sélectionnez un rôle</option>
+                                    @foreach($roles as $key => $role)
+                                        <option @if($role->id == old("id_role") || $role->id == $utilisateur->id_role) selected @endif value="{{$role->id}}">{{$role->libelle_role}} ({{ $role->description_role }})</option>
+                                    @endforeach
+                                </select>
+                                @error('id_role')
+                                <span class="text-danger">
+                                            {{ $message }}
+                                    </span>
                                 @enderror
                             </div>
                         </div>

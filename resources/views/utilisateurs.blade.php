@@ -53,7 +53,8 @@
                                                     <th class="sort" data-sort="service">Service</th>
                                                     <th class="sort" data-sort="fonction">Fonction</th>
                                                     <th class="sort" data-sort="agence">Agence</th>
-                                                    <th class="sort" data-sort="type">Type Compte</th>
+                                                    <th class="sort" data-sort="type">Type Utilisateur</th>
+                                                    <th class="sort" data-sort="role">Rôle Utilisateur</th>
                                                     <th class="sort" data-sort="email">Email</th>
                                                     <th class="sort" data-sort="login">Login</th>
                                                     <th class="sort" data-sort="tel">Téléphone</th>
@@ -88,7 +89,10 @@
                                                         {{ $utilisateur->agence_utilisateur }}
                                                     </td>
                                                     <td class="type">
-                                                        {{ $utilisateur->type_compte_utilisateur }}
+                                                        {{ $utilisateur->typeUtilisateur->libelle_type_utilisateur ?? "-" }}
+                                                    </td>
+                                                    <td class="type">
+                                                     {{ $utilisateur->role->libelle_role ?? "-" }}
                                                     </td>
                                                     <td class="email">
                                                         {{ $utilisateur->email }}

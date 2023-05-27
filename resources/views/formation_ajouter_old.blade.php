@@ -41,7 +41,7 @@
                                 <label for="departement_utilisateur" class="form-label">Lieu formation</label>
                             </div>
                             <div class="col-lg-9">
-                                <input type="text" class="form-control" placeholder="Entrer le lieu de la formation">
+                                <input type="text" class="form-control" placeholder="Entrez le lieu de la formation">
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -50,7 +50,7 @@
                             </div>
                             <div class="col-lg-9">
                                 <select class="form-select" aria-label="Default select example">
-                                    <option selected>Sélectionner un cabinet</option>
+                                    <option selected>Sélectionnez un cabinet</option>
                                     <option value="1">One</option>
                                     <option value="2">Two</option>
                                     <option value="3">Three</option>
@@ -63,7 +63,7 @@
                             </div>
                             <div class="col-lg-9">
                                 <select class="form-select" aria-label="Default select example">
-                                    <option selected>Sélectionner un formateur</option>
+                                    <option selected>Sélectionnez un formateur</option>
                                     <option value="1">One</option>
                                     <option value="2">Two</option>
                                     <option value="3">Three</option>

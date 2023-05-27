@@ -14,7 +14,10 @@ return new class extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string("type_compte_utilisateur")->nullable();
+            $table->integer("id_role")->unsigned()->nullable();
+            $table->foreign("id_role")->references("id")->on("roles")->onDelete("cascade")->onUpdate("cascade");
+            $table->integer("id_type_utilisateur")->unsigned()->nullable();
+            $table->foreign("id_type_utilisateur")->references("id")->on("type_utlisateurs")->onDelete("cascade")->onUpdate("cascade");
         });
     }
 
@@ -25,8 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            //
-        });
+        //
     }
 };

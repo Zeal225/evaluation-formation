@@ -89,7 +89,7 @@
                                                 <div class="mb-3">
                                                     <label for="username" class="form-label">Département</label>
                                                     <select class="form-select mb-3" aria-label="Default select example">
-                                                        <option selected>Sélectionner un département</option>
+                                                        <option selected>Sélectionnez un département</option>
                                                         <option value="1">One</option>
                                                         <option value="2">Two</option>
                                                         <option value="3">Three</option>
@@ -98,7 +98,7 @@
                                                 <div class="mb-3">
                                                     <label for="username" class="form-label">Service</label>
                                                     <select class="form-select mb-3" aria-label="Default select example">
-                                                        <option selected>Sélectionner un service</option>
+                                                        <option selected>Sélectionnez un service</option>
                                                         <option value="1">One</option>
                                                         <option value="2">Two</option>
                                                         <option value="3">Three</option>
@@ -107,7 +107,7 @@
                                                 <div class="mb-3">
                                                     <label for="username" class="form-label">Fonction</label>
                                                     <select class="form-select mb-3" aria-label="Default select example">
-                                                        <option selected>Sélectionner une fonction</option>
+                                                        <option selected>Sélectionnez une fonction</option>
                                                         <option value="1">One</option>
                                                         <option value="2">Two</option>
                                                         <option value="3">Three</option>

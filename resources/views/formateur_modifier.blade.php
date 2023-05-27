@@ -88,7 +88,7 @@
                             </div>
                             <div class="col-lg-9">
                                 <select name="cabinet_id" id="cabinet_id" class="form-select" aria-label="Default select example">
-                                    <option value="">Sélectionner le cabinet du formateur</option>
+                                    <option value="">Sélectionnez le cabinet du formateur</option>
                                     @foreach($cabinets as $key => $cabinet)
                                         <option @if($cabinet->id == old("cabinet_id") || $cabinet->id == $formateur->cabinet->id) selected @endif value="{{$cabinet->id}}">{{$cabinet->nom_cabinet}}</option>
                                     @endforeach

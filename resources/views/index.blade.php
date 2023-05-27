@@ -68,7 +68,7 @@
                                                 @csrf
                                                 <div class="mb-3">
                                                     <label for="email" class="form-label">Email</label>
-                                                    <input name="email" type="email" class="form-control" id="email" placeholder="Entrer votre email">
+                                                    <input name="email" type="email" class="form-control" id="email" placeholder="Entrez votre email">
                                                 </div>
 
                                                 <div class="mb-3">
@@ -77,7 +77,7 @@
                                                     </div>
                                                     <label class="form-label" for="password">Mot de passe</label>
                                                     <div class="position-relative auth-pass-inputgroup mb-3">
-                                                        <input type="password" name="password" class="form-control pe-5" placeholder="Entrer votre mot de passe" id=password">
+                                                        <input type="password" name="password" class="form-control pe-5" placeholder="Entrez votre mot de passe" id=password">
                                                         <button class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted shadow-none" type="button" id="password-addon"><i class="ri-eye-fill align-middle"></i></button>
                                                     </div>
                                                 </div>

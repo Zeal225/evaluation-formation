@@ -18,7 +18,7 @@
                             </div>
                             <div class="col-lg-9">
                                 <select name="categorie_appreciation_id" id="categorie_appreciation_id" class="form-select" aria-label="Default select example">
-                                    <option value="">Sélectionner le type de compte</option>
+                                    <option value="">Sélectionnez le type de compte</option>
                                     @foreach($categories as $key => $categorie)
                                         <option @if($categorie->id == old("categorie_appreciation_id")) selected @endif value="{{ $categorie->id }}">{{ $categorie->libelle_categorie_appreciation }}</option>
                                     @endforeach

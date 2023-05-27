@@ -45,7 +45,7 @@
                                                 <tr>
                                                     <th class="sort" data-sort="date">Date de création</th>
                                                     <th class="sort" data-sort="libelle">Libellé rôle</th>
-                                                    <th class="sort" data-sort="note">Description rôle</th>
+                                                    <th class="sort" data-sort="description">Description rôle</th>
                                                     <th class="sort" data-sort="action">Actions</th>
                                                 </tr>
                                                 </thead>
@@ -58,7 +58,7 @@
                                                     <td class="libelle">
                                                         {{ $role->libelle_role }}
                                                     </td>
-                                                    <td class="note">
+                                                    <td class="description">
                                                         {{ $role->description_role }}
                                                     </td>
                                                     <td>

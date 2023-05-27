@@ -33,7 +33,8 @@ class InsererUtilisateurRequest extends FormRequest
             'login_utilisateur' => ['required', 'string', 'max:255', 'unique:users'],
             'telephone_utilisateur' => ['required', 'string', 'max:255', 'unique:users'],
             'agence_utilisateur' => ['required', 'string', 'max:255'],
-            'type_compte_utilisateur' => ['required', 'string', 'max:255'],
+            'id_type_utilisateur' => ['required', 'exists:type_utlisateurs,id'],
+            'id_role' => ['required', 'exists:roles,id'],
             'email' => ['required', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'max:255'],
         ];
@@ -54,11 +55,14 @@ class InsererUtilisateurRequest extends FormRequest
             'telephone_utilisateur.required' => 'Le téléphone est obligatoire',
             'telephone_utilisateur.unique' => 'Ce téléphone existe déjà',
             'agence_utilisateur.required' => 'L\'agence est obligatoire',
-            'type_compte_utilisateur.required' => 'Le type de compte est obligatoire',
+            'id_type_utilisateur.required' => 'Le type d\'utilisateur est obligatoire',
+            'id_type_utilisateur.exists' => 'Ce type d\'utilisateur n\'existe pas',
+            'id_role.required' => 'Le rôle est obligatoire',
+            'id_role.exists' => 'Ce rôle n\'existe pas',
             'email.required' => 'L\'email est obligatoire',
+            'email.email' => 'L\'email doit être valide',
             'email.unique' => 'Cet email existe déjà',
             'password.required' => 'Le mot de passe est obligatoire',
-            'password.max' => 'Le mot de passe ne doit pas dépasser 255 caractères',
         ];
     }
 }

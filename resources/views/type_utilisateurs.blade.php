@@ -16,7 +16,7 @@
                         <div class="col-lg-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title mb-0"> Liste des type d'utilisateur</h4>
+                                    <h4 class="card-title mb-0">Liste des types d'utilisateur</h4>
                                 </div>
                                 <div class="card-body">
                                     <div id="customerList">

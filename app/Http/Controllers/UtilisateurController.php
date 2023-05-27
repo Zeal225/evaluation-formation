@@ -37,12 +37,14 @@ class UtilisateurController extends Controller
     }
 
     public function listeutilisateur(){
-        $utilisateurs = DB::table('users')->orderBy("created_at", "desc")->get();
+        $utilisateurs = User::with('typeUtilisateur', 'role')->orderBy("created_at", "desc")->get();
         return view('utilisateurs', compact('utilisateurs'));
     }
 
     public function formulaireAjouterUtilisateur(){
-        return view('utilisateur_ajouter');
+        $typeUtilisateurs = DB::table('type_utlisateurs')->get();
+        $roles = DB::table('roles')->get();
+        return view('utilisateur_ajouter', compact('typeUtilisateurs', 'roles'));
     }
 
     public function ajouterUtilisateur(InsererUtilisateurRequest $request){
@@ -57,7 +59,8 @@ class UtilisateurController extends Controller
         $utilisateur->login_utilisateur = $request->login_utilisateur;
         $utilisateur->telephone_utilisateur = $request->telephone_utilisateur;
         $utilisateur->agence_utilisateur = $request->agence_utilisateur;
-        $utilisateur->type_compte_utilisateur = $request->type_compte_utilisateur;
+        $utilisateur->id_type_utilisateur = $request->id_type_utilisateur;
+        $utilisateur->id_role = $request->id_role;
         $utilisateur->password = Hash::make($request->password);
         $utilisateur->email = $request->email;
         try {
@@ -71,7 +74,9 @@ class UtilisateurController extends Controller
 
     public function formulaireModifierUtilisateur($id){
         $utilisateur = User::find($id);
-        return view('utilisateur_modifier', compact('utilisateur'));
+        $typeUtilisateurs = DB::table('type_utlisateurs')->get();
+        $roles = DB::table('roles')->get();
+        return view('utilisateur_modifier', compact('utilisateur', 'typeUtilisateurs', 'roles'));
     }
 
     public function modifierUtilisateur(ModifierUtilisateurRequest $request){
