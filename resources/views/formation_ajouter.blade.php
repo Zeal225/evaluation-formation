@@ -16,18 +16,108 @@
                                 <label for="theme_formation" class="form-label">Thème de la formation</label>
                             </div>
                             <div class="col-lg-9">
-                                <textarea name="theme_formation" class="form-control" id="theme_formation" rows="3">{{ old("theme_formation") }}</textarea>
+                                <input name="theme_formation" class="form-control" id="theme_formation" placeholder="Entrez le thème de la formation">{{ old("theme_formation") }}
                                 @error('theme_formation')
                                     <span class="text-danger">
                                         {{ $message }}
                                     </span>
                                 @enderror
+                            </div>
+                        </div>
 
+                        <div class="row mb-3">
+                            <div class="col-lg-3">
+                                <label for="date_debut" class="form-label">Date début de la formation</label>
+                            </div>
+                            <div class="col-lg-9">
+                                <div>
+                                    <input id="date_debut" name="date_debut" type="text" placeholder="Entrez la date de début" class="form-control" data-provider="flatpickr" data-date-format="d-M-Y">
+                                    @error('theme_formation')
+                                    <span class="text-danger">
+                                        {{ $message }}
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-lg-3">
+                                <label for="heure_debut" class="form-label">Heure début de la formation</label>
+                            </div>
+                            <div class="col-lg-9">
+                                <div>
+                                    <input id="heure_debut" name="heure_debut" type="text" placeholder="Entrez l'heure de début" class="form-control"  data-provider="timepickr" data-time-basic="true">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-lg-3">
+                                <label for="date_fin" class="form-label">Date fin de la formation</label>
+                            </div>
+                            <div class="col-lg-9">
+                                <div>
+                                    <input name="date_fin" id="date_fin" type="text" placeholder="Entrez la date de fin" class="form-control" data-provider="flatpickr" data-date-format="d-M-Y">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-lg-3">
+                                <label for="heure_fin" class="form-label">Heure fin de la formation</label>
+                            </div>
+                            <div class="col-lg-9">
+                                <div>
+                                    <input name="heure_fin" id="heure_fin" type="text" placeholder="Entrez l'heure de fin" class="form-control"  data-provider="timepickr" data-time-basic="true">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-lg-3">
+                                <label for="lieu_formation" class="form-label">Lieu de la formation</label>
+                            </div>
+                            <div class="col-lg-9">
+                                <input name="lieu_formation" class="form-control" id="lieu_formation" placeholder="Entrez le lieu de la formation">{{ old("theme_formation") }}
+                                @error('lieu_formation')
+                                <span class="text-danger">
+                                    {{ $message }}
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-lg-3">
+                                <label for="id_formateur" class="form-label">Formateur</label>
+                            </div>
+                            <div class="col-lg-9">
+                                <select name="id_formateur" id="id_formateur" class="form-select" aria-label="Default select example">
+                                    <option value="">Sélectionnez un formateur</option>
+                                    @foreach($formateurs as $formateur)
+                                        <option value="{{ $formateur->id }}">{{ $formateur->nom_formateur }} {{ $formateur->prenom_formateur }} - {{ $formateur->specialite_formateur }} - {{ $formateur->cabinet->nom_cabinet }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-lg-3">
+                                <label for="id_utilisateur" class="form-label">Participants</label>
+                            </div>
+                            <div class="col-lg-9">
+                                <select class="form-control" id="id_utilisateur" data-choices data-choices-removeItem name="id_utilisateur[]" multiple>
+                                    <option value="">Selectionez les participant</option>
+                                   @foreach($utilisateurs as $utilisateur)
+                                        <option value="{{ $utilisateur->id }}">{{ $utilisateur->nom_utilisateur }} {{ $utilisateur->prenom_utilisateur }} </option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
 
                         <div class="text-end">
-                            <button type="submit" class="btn btn-primary">Enrégistrer la formation</button>
+                            <button type="submit" class="btn btn-primary">Enregistrer la formation</button>
                         </div>
                     </form>
                 </div>

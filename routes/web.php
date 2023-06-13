@@ -17,10 +17,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware(['rediriger_si_utilisateur_connecte'])->group(function () {
     Route::post("/formation/add", "App\Http\Controllers\FormationController@InsererFormation")->name("inserer_formation");
-
-    Route::get('/formation/add', function () {
-        return view('formation_ajouter');
-    })->name("formation_ajouter");
+    Route::get("/formation/add", "App\Http\Controllers\FormationController@formulaireInsererFormation")->name("formation_ajouter");
 
     Route::get("/formation","App\Http\Controllers\FormationController@listeFormation")->name("liste_formations");
     Route::get("/formation/modifier/id/{id}","App\Http\Controllers\FormationController@modifierFormation")->name("modifier_formation");

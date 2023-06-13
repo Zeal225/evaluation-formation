@@ -33,9 +33,9 @@ class ModifierUtilisateurRequest extends FormRequest
             'login_utilisateur' => ['required', 'string', 'max:255'],
             'telephone_utilisateur' => ['required', 'string', 'max:255'],
             'agence_utilisateur' => ['required', 'string', 'max:255'],
-            'id_type_utilisateur' => ['required', 'exists:type_utlisateurs,id'],
+            'id_type_utilisateur' => ['required'],
             'id_role' => ['required', 'exists:roles,id'],
-            'email' => ['required', 'email', 'max:255'],
+            'email' => ['required', 'email', 'max:255', 'unique:users,email,' . decrypt($this->id)],
             'password' => ['required', 'string', 'max:255'],
         ];
     }

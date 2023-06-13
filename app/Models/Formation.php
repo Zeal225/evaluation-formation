@@ -11,5 +11,15 @@ class Formation extends Model
 
     protected $table = "formations";
     protected $primaryKey = "id_formation";
-    protected $fillable = ["theme_formation"];
+    protected $fillable = ["theme_formation", "id_formateur"];
+
+    public function formateur()
+    {
+        return $this->belongsTo(Formateur::class, 'id_formateur');
+    }
+
+    public function formation_utilisateur()
+    {
+        return $this->hasMany(FormationUtilisateur::class, 'id_formation');
+    }
 }

@@ -27,4 +27,7 @@
 .menu-title span {
     color: white !important;
 }
-
+.flatpickr-months,
+.flatpickr-weekdays{
+    background: rgb(236, 103, 27) !important;
+}

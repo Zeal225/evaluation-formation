@@ -11,6 +11,7 @@
     <!-- App favicon -->
     <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}">
 
+    <link rel="stylesheet" href="{{ asset("/assets/libs/@simonwep/pickr/themes/classic.min.css") }}">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
     <link rel="stylesheet" href="{{ asset("assets/libs/gridjs/theme/mermaid.min.css") }}">
@@ -454,6 +455,8 @@
 
 <script src="{{ asset("assets/js/pages/select2.init.js") }}"></script>
 <script src="{{ asset("assets/libs/choices.js/public/assets/scripts/choices.min.js") }}"></script>
+<script type="text/javascript" src="{{ asset("/assets/libs/flatpickr/flatpickr.min.js") }}"></script>
+<script src="{{ asset("/assets/js/pages/form-pickers.init.js") }}"></script>
 <!-- App js -->
 <script src="{{ asset('assets/js/app.js') }}"></script>
 

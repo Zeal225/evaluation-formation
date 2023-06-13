@@ -33,7 +33,7 @@ class User extends Authenticatable
         'agence_utilisateur',
         'agence_utilisateur',
         'agence_utilisateur',
-        'type_compte_utilisateur',
+        'id_type_utilisateur',
     ];
 
     /**

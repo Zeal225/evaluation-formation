@@ -91,8 +91,8 @@ class UtilisateurController extends Controller
             'login_utilisateur',
             'telephone_utilisateur',
             'agence_utilisateur',
-            'type_compte_utilisateur',
-            'email'
+            'id_type_utilisateur',
+            'email',
         );
         $utilisateur = User::find(decrypt($data['id']));
         $utilisateur->matricule_utilisateur = $data['matricule_utilisateur'];
@@ -105,13 +105,14 @@ class UtilisateurController extends Controller
         $utilisateur->login_utilisateur = $data['login_utilisateur'];
         $utilisateur->telephone_utilisateur = $data['telephone_utilisateur'];
         $utilisateur->agence_utilisateur = $data['agence_utilisateur'];
-        $utilisateur->type_compte_utilisateur = $data['type_compte_utilisateur'];
+        $utilisateur->id_type_utilisateur = $data['id_type_utilisateur'];
         $utilisateur->email = $data['email'];
         try {
             $utilisateur->save();
             Session::flash('message', "Utilisateur modifié avec succès.");
             return redirect()->route('liste_utilisateurs');
         }catch (\Exception $e){
+            dd($e->getMessage());
             return redirect()->back();
         }
     }
