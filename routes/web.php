@@ -23,6 +23,7 @@ Route::middleware(['rediriger_si_utilisateur_connecte'])->group(function () {
     Route::get("/formation/modifier/id/{id}","App\Http\Controllers\FormationController@modifierFormation")->name("modifier_formation");
     Route::post("/formation/modifier/id/{id}","App\Http\Controllers\FormationController@modifierFormationOk")->name("modifier_formation_ok");
     Route::get("/formation/supprimer/id/{id}","App\Http\Controllers\FormationController@supprimerFormation")->name("supprimer_formation");
+    Route::get("/formation/participants/{id}","App\Http\Controllers\FormationController@participantsFormation")->name("participants_formation");
 
     Route::get('/signup', function () {
         return view('signup');
@@ -99,12 +100,6 @@ Route::middleware(['rediriger_si_utilisateur_connecte'])->group(function () {
     Route::get('/utilisateurs/add', function () {
         return view('utilisateur_ajouter');
     });
-    /*Route::get('/formateur', function () {
-        return view('formateur');
-    });*/
-    /*Route::get('/objectif', function () {
-        return view('objectif');
-    });*/
     Route::get('/objectif/add', function () {
         return view('objectif_ajouter');
     });

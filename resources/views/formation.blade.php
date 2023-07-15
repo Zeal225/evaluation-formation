@@ -16,7 +16,7 @@
                         <div class="col-lg-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title mb-0"> Liste des cabinets de formations</h4>
+                                    <h4 class="card-title mb-0"> Liste des formations</h4>
                                 </div><!-- end card header -->
 
                                 <div class="card-body">
@@ -44,11 +44,16 @@
                                             <table class="table align-middle table-nowrap" id="customerTable">
                                                 <thead class="table-light">
                                                 <tr>
-                                                    <th class="sort" data-sort="id">ID</th>
-                                                    <th class="sort" data-sort="date">Date de création</th>
-                                                    <th class="col" data-sort="theme">Theme</th>
-                                                    <th class="col" data-sort="formateur">Formateur</th>
-                                                    <th class="col" data-sort="formateur">Specialité</th>
+                                                    <th class="sort" data-sort="id_formation">ID</th>
+                                                    <th class="sort" data-sort="created_at">Date de création</th>
+                                                    <th class="col" data-sort="lieu_formation">Lieu formation</th>
+                                                    <th class="col" data-sort="theme_formation">Theme</th>
+                                                    <th class="col" data-sort="nom_formateur">Formateur</th>
+                                                    <th class="col" data-sort="specialite_formateur">Specialité</th>
+                                                    <th class="col" data-sort="date_debut">Date début</th>
+                                                    <th class="col" data-sort="date_fin">Date fin</th>
+                                                    <th class="col" data-sort="statut">Etat formation</th>
+                                                    <th class="col" data-sort="statut">Participants</th>
                                                     <th class="col" data-sort="action">Actions</th>
                                                 </tr>
                                                 </thead>
@@ -59,7 +64,10 @@
                                                             {{ $liste_formation->id_formation }}
                                                         </th>
                                                         <td>
-                                                            {{ $liste_formation->created_at }}
+                                                            {{ \Carbon\Carbon::parse($liste_formation->created_at)->format('d M, Y') }}
+                                                        </td>
+                                                        <td>
+                                                            {{ $liste_formation->lieu_formation ?? '' }}
                                                         </td>
                                                         <td>
                                                             {{ $liste_formation->theme_formation }}
@@ -70,6 +78,26 @@
                                                         </td>
                                                         <td>
                                                             {{ $liste_formation->formateur->specialite_formateur ?? '' }}
+                                                        </td>
+                                                        <td>
+                                                            {{ \Carbon\Carbon::parse($liste_formation->date_debut)->format('d M, Y') }} à {{ \Carbon\Carbon::parse($liste_formation->heure_debut)->format('H:i') }}
+                                                        </td>
+                                                        <td>
+                                                            {{ \Carbon\Carbon::parse($liste_formation->date_fin)->format('d M, Y') }} à {{ \Carbon\Carbon::parse($liste_formation->heure_fin)->format('H:i') }}
+                                                        </td>
+                                                        <td>
+                                                            @if($liste_formation->date_debut > \Carbon\Carbon::now())
+                                                                <span class="badge bg-soft-warning text-warning">En attente</span>
+                                                            @elseif($liste_formation->date_fin > \Carbon\Carbon::now())
+                                                                <span class="badge bg-soft-success text-success">En cours</span>
+                                                            @elseif($liste_formation->date_fin < \Carbon\Carbon::now())
+                                                                <span class="badge bg-soft-danger text-danger">Terminé</span>
+                                                            @else
+                                                                <span class="badge bg-soft-info text-info">En attente</span>
+                                                            @endif
+                                                        </td>
+                                                        <td>
+                                                            <a href="{{ route("participants_formation", ["id"=>$liste_formation->id_formation]) }}" class="btn btn-secondary btn-sm">Voir participants</a>
                                                         </td>
                                                         <td>
                                                             <a href="{{ route("modifier_formation", ["id"=>$liste_formation->id_formation]) }}" class="btn btn-primary btn-sm">Modifier</a>

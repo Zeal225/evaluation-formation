@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class InsererFormationRequest extends FormRequest
+class ModifierFormationRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,14 +25,14 @@ class InsererFormationRequest extends FormRequest
     {
         return [
             "theme_formation" => "required|min:3|max:255",
-            "date_debut" => "required|date|after:today",
+            "date_debut" => "required|date|before:date_fin",
             "heure_debut" => "required|date_format:H:i",
             "date_fin" => "required|date|after:date_debut",
             "heure_fin" => "required|date_format:H:i",
             "lieu_formation" => "required|min:3|max:255",
             "id_formateur" => "required",
-            "id_utilisateur" => "required|array|min:1"
-        ];
+            "id_utilisateur" => "required|array|min:1",
+            ];
     }
 
     public function messages()
@@ -43,7 +43,7 @@ class InsererFormationRequest extends FormRequest
             "theme_formation.max" => "Le thème de la formation doit contenir au plus :max caractères",
             "date_debut.required" => "La date de début de la formation est obligatoire",
             "date_debut.date" => "La date de début de la formation doit être une date valide",
-            "date_debut.after" => "La date de début de la formation doit être supérieure à la date du jour",
+            "date_debut.before" => "La date de début de la formation doit être inférieure à la date de fin de la formation",
             "heure_debut.required" => "L'heure de début de la formation est obligatoire",
             "heure_debut.date_format" => "L'heure de début de la formation doit être une heure valide",
             "date_fin.required" => "La date de fin de la formation est obligatoire",

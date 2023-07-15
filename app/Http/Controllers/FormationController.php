@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\InsererFormationRequest;
+use App\Http\Requests\ModifierFormationRequest;
+use App\Models\Formation;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
 class FormationController extends Controller
@@ -12,10 +15,10 @@ class FormationController extends Controller
     public function formulaireInsererFormation(){
         $formateurs = \App\Models\Formateur::with('cabinet')->orderBy("created_at", "desc")->get();
         $utilisateurs = User::with('typeUtilisateur', 'role')->where("id_role", "!=", null)->orderBy("created_at", "desc")->get();
-
         return view('formation_ajouter', compact("formateurs", "utilisateurs"));
     }
     public function InsererFormation(InsererFormationRequest $formulaire_insertion_formation){
+        DB::beginTransaction();
         try {
             $theme_formation = $formulaire_insertion_formation['theme_formation'];
             $nouvelle_formation = new \App\Models\Formation;
@@ -35,30 +38,73 @@ class FormationController extends Controller
                 $formation_utilisateur->lieu_formation = $formulaire_insertion_formation['lieu_formation'];
                 $formation_utilisateur->save();
             }
+            DB::commit();
             Session::flash("message", "Formation ajoutée avec succès");
             return redirect()->route("liste_formations");
         }catch (\Exception $e){
+            DB::rollBack();
             return redirect()->route("liste_formations");
         }
 
     }
 
     public function listeFormation(){
-        //$liste_formations = \App\Models\Formation::orderBy("created_at", "desc")->get();
-        $liste_formations = \App\Models\Formation::with('formateur', 'formation_utilisateur')->orderBy("created_at", "desc")->get();
+        $liste_formations = \App\Models\Formation::with('formateur')
+            ->join('formation_utilisateur', 'formations.id_formation', '=', 'formation_utilisateur.id_formation')->distinct('formations.id_formation')->orderBy("formations.id_formation", "desc")->get();
         return view("formation", compact("liste_formations"));
     }
 
-    public function modifierFormation($id){
-        $formation  = \App\Models\Formation::find($id);
-        return view("modifier_formation", compact("formation"));
+    public function participantsFormation($id){
+        $liste_participants = User::with('typeUtilisateur', 'role')
+            ->join('formation_utilisateur', 'users.id', '=', 'formation_utilisateur.id_utilisateur')
+            ->where('formation_utilisateur.id_formation', $id)->orderBy("users.id", "desc")->get();
+        $formation = Formation::find($id);
+        return view("formation_participants", compact("liste_participants", "formation"));
     }
 
-    public function modifierFormationOk(InsererFormationRequest $formulaire_modification_formation, $id){
-        $formation  = \App\Models\Formation::find($id);
-        $formation->theme_formation = $formulaire_modification_formation['theme_formation'];
-        $formation->save();
-        return redirect()->route("liste_formations");
+    public function modifierFormation($id){
+        $formation  = \App\Models\Formation::with('formateur')->find($id);
+        $formation_utilisateur = \App\Models\FormationUtilisateur::where("id_formation", $id)->first();
+        $formateurs = \App\Models\Formateur::with('cabinet')->orderBy("created_at", "desc")->get();
+        $utilisateurs = User::with('typeUtilisateur', 'role')->where("id_role", "!=", null)->orderBy("created_at", "desc")->get();
+        $participants = User::with('typeUtilisateur', 'role')
+            ->join('formation_utilisateur', 'users.id', '=', 'formation_utilisateur.id_utilisateur')
+            ->where('formation_utilisateur.id_formation', $id)->orderBy("users.id", "desc")->get();
+        return view("modifier_formation", compact(
+            "formation",
+            "formateurs",
+            "utilisateurs",
+            "formation_utilisateur", "participants"));
+    }
+
+    public function modifierFormationOk(ModifierFormationRequest $formulaire_modification_formation, $id){
+        DB::beginTransaction();
+        try {
+            $formation  = \App\Models\Formation::find($id);
+            $data = $formulaire_modification_formation->all();
+            $formation->update($data);
+            $formation_utilisateurs = \App\Models\FormationUtilisateur::where("id_formation", $id)->get();
+            foreach ($formation_utilisateurs as $formation_utilisateur){
+                $formation_utilisateur->delete();
+            }
+            foreach ($formulaire_modification_formation['id_utilisateur'] as $id_utilisateur) {
+                $formation_utilisateur = new \App\Models\FormationUtilisateur;
+                $formation_utilisateur->id_utilisateur = $id_utilisateur;
+                $formation_utilisateur->id_formation = $formation->id_formation;
+                $formation_utilisateur->date_debut = $formulaire_modification_formation['date_debut'];
+                $formation_utilisateur->date_fin = $formulaire_modification_formation['date_fin'];
+                $formation_utilisateur->heure_debut = $formulaire_modification_formation['heure_debut'];
+                $formation_utilisateur->heure_fin = $formulaire_modification_formation['heure_fin'];
+                $formation_utilisateur->lieu_formation = $formulaire_modification_formation['lieu_formation'];
+                $formation_utilisateur->save();
+            }
+            DB::commit();
+            Session::flash("message", "Formation modifié avec succès");
+            return redirect()->route("liste_formations");
+        }catch (\Exception $e){
+            DB::rollBack();
+            return redirect()->route("liste_formations");
+        }
     }
 
     public function supprimerFormation($id){

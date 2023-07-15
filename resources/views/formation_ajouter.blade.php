@@ -16,7 +16,7 @@
                                 <label for="theme_formation" class="form-label">Thème de la formation</label>
                             </div>
                             <div class="col-lg-9">
-                                <input name="theme_formation" class="form-control" id="theme_formation" placeholder="Entrez le thème de la formation">{{ old("theme_formation") }}
+                                <input name="theme_formation" value="{{ old("theme_formation") }}" class="form-control" id="theme_formation" placeholder="Entrez le thème de la formation">
                                 @error('theme_formation')
                                     <span class="text-danger">
                                         {{ $message }}
@@ -31,8 +31,8 @@
                             </div>
                             <div class="col-lg-9">
                                 <div>
-                                    <input id="date_debut" name="date_debut" type="text" placeholder="Entrez la date de début" class="form-control" data-provider="flatpickr" data-date-format="d-M-Y">
-                                    @error('theme_formation')
+                                    <input value="{{ old("date_debut") }}" id="date_debut" name="date_debut" type="text" placeholder="Entrez la date de début" class="form-control" data-provider="flatpickr" data-date-format="d-M-Y">
+                                    @error('date_debut')
                                     <span class="text-danger">
                                         {{ $message }}
                                     </span>
@@ -47,7 +47,12 @@
                             </div>
                             <div class="col-lg-9">
                                 <div>
-                                    <input id="heure_debut" name="heure_debut" type="text" placeholder="Entrez l'heure de début" class="form-control"  data-provider="timepickr" data-time-basic="true">
+                                    <input id="heure_debut" value="{{ old("heure_debut") }}" name="heure_debut" type="text" placeholder="Entrez l'heure de début" class="form-control"  data-provider="timepickr" data-time-basic="true">
+                                    @error('heure_debut')
+                                    <span class="text-danger">
+                                        {{ $message }}
+                                    </span>
+                                    @enderror
                                 </div>
                             </div>
                         </div>
@@ -58,7 +63,12 @@
                             </div>
                             <div class="col-lg-9">
                                 <div>
-                                    <input name="date_fin" id="date_fin" type="text" placeholder="Entrez la date de fin" class="form-control" data-provider="flatpickr" data-date-format="d-M-Y">
+                                    <input name="date_fin" value="{{ old("date_fin") }}" id="date_fin" type="text" placeholder="Entrez la date de fin" class="form-control" data-provider="flatpickr" data-date-format="d-M-Y">
+                                    @error('date_fin')
+                                    <span class="text-danger">
+                                        {{ $message }}
+                                    </span>
+                                    @enderror
                                 </div>
                             </div>
                         </div>
@@ -69,7 +79,12 @@
                             </div>
                             <div class="col-lg-9">
                                 <div>
-                                    <input name="heure_fin" id="heure_fin" type="text" placeholder="Entrez l'heure de fin" class="form-control"  data-provider="timepickr" data-time-basic="true">
+                                    <input name="heure_fin" value="{{ old("heure_fin") }}" id="heure_fin" type="text" placeholder="Entrez l'heure de fin" class="form-control"  data-provider="timepickr" data-time-basic="true">
+                                    @error('heure_fin')
+                                    <span class="text-danger">
+                                        {{ $message }}
+                                    </span>
+                                    @enderror
                                 </div>
                             </div>
                         </div>
@@ -79,7 +94,7 @@
                                 <label for="lieu_formation" class="form-label">Lieu de la formation</label>
                             </div>
                             <div class="col-lg-9">
-                                <input name="lieu_formation" class="form-control" id="lieu_formation" placeholder="Entrez le lieu de la formation">{{ old("theme_formation") }}
+                                <input name="lieu_formation" value="{{ old("lieu_formation") }}" class="form-control" id="lieu_formation" placeholder="Entrez le lieu de la formation">
                                 @error('lieu_formation')
                                 <span class="text-danger">
                                     {{ $message }}
@@ -96,9 +111,14 @@
                                 <select name="id_formateur" id="id_formateur" class="form-select" aria-label="Default select example">
                                     <option value="">Sélectionnez un formateur</option>
                                     @foreach($formateurs as $formateur)
-                                        <option value="{{ $formateur->id }}">{{ $formateur->nom_formateur }} {{ $formateur->prenom_formateur }} - {{ $formateur->specialite_formateur }} - {{ $formateur->cabinet->nom_cabinet }}</option>
+                                        <option @if($formateur->id == old("id_formateur")) selected @endif value="{{ $formateur->id }}">{{ $formateur->nom_formateur }} {{ $formateur->prenom_formateur }} - {{ $formateur->specialite_formateur }} - {{ $formateur->cabinet->nom_cabinet }}</option>
                                     @endforeach
                                 </select>
+                                @error('id_formateur')
+                                <span class="text-danger">
+                                    {{ $message }}
+                                </span>
+                                @enderror
                             </div>
                         </div>
 
@@ -110,9 +130,14 @@
                                 <select class="form-control" id="id_utilisateur" data-choices data-choices-removeItem name="id_utilisateur[]" multiple>
                                     <option value="">Selectionez les participant</option>
                                    @foreach($utilisateurs as $utilisateur)
-                                        <option value="{{ $utilisateur->id }}">{{ $utilisateur->nom_utilisateur }} {{ $utilisateur->prenom_utilisateur }} </option>
+                                        <option @if(in_array($utilisateur->id, old("id_utilisateur", []))) selected @endif value="{{ $utilisateur->id }}">{{ $utilisateur->nom_utilisateur }} {{ $utilisateur->prenom_utilisateur }} </option>
                                     @endforeach
                                 </select>
+                                @error('id_utilisateur')
+                                <span class="text-danger">
+                                    {{ $message }}
+                                </span>
+                                @enderror
                             </div>
                         </div>
 
