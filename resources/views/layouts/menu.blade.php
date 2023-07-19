@@ -56,13 +56,8 @@
 
                 <li class="menu-title"><span data-key="t-menu">Evaluations Des formations</span></li>
                 <li class="nav-item">
-                    <a class="nav-link menu-link" href="widgets.html">
-                        <i class="mdi mdi-notebook-edit"></i> <span>Evaluation à Chaud</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link menu-link" href="widgets.html">
-                        <i class="mdi mdi-notebook-multiple"></i> <span>Evaluation à Froid</span>
+                    <a class="nav-link menu-link" href="{{ route('evaluation_formation') }}">
+                        <i class="mdi mdi-notebook-edit"></i> <span>Evaluation</span>
                     </a>
                 </li>
                 <li class="nav-item">

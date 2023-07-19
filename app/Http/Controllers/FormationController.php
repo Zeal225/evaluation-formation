@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\InsererFormationRequest;
 use App\Http\Requests\ModifierFormationRequest;
+use App\Models\Cabinet;
+use App\Models\CategorieAppreciation;
 use App\Models\Formation;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -112,5 +114,30 @@ class FormationController extends Controller
         $formation->delete();
         return redirect()->route("liste_formations");
 
+    }
+
+    public function evaluationsFormation(){
+        $liste_formations = \App\Models\Formation::with('formateur')
+            ->join('formation_utilisateur', 'formations.id_formation', '=', 'formation_utilisateur.id_formation')->distinct('formations.id_formation')->orderBy("formations.id_formation", "desc")->get();
+        return view("formation_evaluation", compact("liste_formations"));
+    }
+
+    public function evaluationsFormationParticipant($id){
+        $liste_participants = User::with('typeUtilisateur', 'role')
+            ->join('formation_utilisateur', 'users.id', '=', 'formation_utilisateur.id_utilisateur')
+            ->where('formation_utilisateur.id_formation', $id)->orderBy("users.id", "desc")->get();
+        $formation = Formation::find($id);
+        return view("formation_participants_evaluation", compact("liste_participants", "formation"));
+    }
+
+    public function ajouterEvaluationsFormationParticipant($id, $id_utilisateur){
+        $formation  = \App\Models\Formation::with('formateur')->find($id);
+        $formation_utilisateur = \App\Models\FormationUtilisateur::where("id_formation", $id)->first();
+        $user = User::with('typeUtilisateur', 'role')->find($id_utilisateur);
+        $cabinet = Cabinet::find($formation->formateur->cabinet_id);
+        $groupe_appreciations = CategorieAppreciation::with('appreciations')->get();
+        return view("evaluation_chaud_ajouter", compact(
+            "formation",
+            "formation_utilisateur", "user", "cabinet", "groupe_appreciations"));
     }
 }
