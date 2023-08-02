@@ -27,6 +27,10 @@ Route::middleware(['rediriger_si_utilisateur_connecte'])->group(function () {
     Route::get("/formation/evaluations","App\Http\Controllers\FormationController@evaluationsFormation")->name("evaluation_formation");
     Route::get("/formation/evaluations/participants/{id}","App\Http\Controllers\FormationController@evaluationsFormationParticipant")->name("evaluation_formation_participant");
     Route::get("/formation/{id}/evaluations/participants/{pt}/ajouter","App\Http\Controllers\FormationController@ajouterEvaluationsFormationParticipant")->name("ajouter_evaluation_formation_participant");
+    Route::post("/formation/evaluations/participants/ajouter","App\Http\Controllers\FormationController@ajouterEvaluationsFormationParticipantOk")->name("ajouter_evaluation_formation_participant_ok");
+
+    Route::get("/formation/{id}/evaluations/froid/participants/{pt}/ajouter","App\Http\Controllers\FormationController@ajouterEvaluationsFroidFormationParticipant")->name("ajouter_evaluation_froid_formation_participant");
+    Route::post("/formation/evaluations/froid/participants/ajouter","App\Http\Controllers\FormationController@ajouterEvaluationsFroidFormationParticipantOk")->name("ajouter_evaluation_froid_formation_participant_ok");
 
     Route::get('/signup', function () {
         return view('signup');

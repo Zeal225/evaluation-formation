@@ -17,8 +17,7 @@
                             <div class="card">
                                 <div class="card-header">
                                     <h4 class="card-title mb-0">Liste des particpants à la formation [ <b>{{ $formation->theme_formation }}</b> ]</h4>
-                                </div><!-- end card header -->
-
+                                </div>
                                 <div class="card-body">
                                     <div id="customerList">
                                         <div class="row g-4 mb-3">
@@ -81,8 +80,9 @@
                                                         <a href="{{ route("ajouter_evaluation_formation_participant", ["id"=>$formation->id_formation, "pt"=>$participant->id_utilisateur]) }}" class="btn btn-warning btn-sm">
                                                             Evaluer à chaud
                                                         </a>
-                                                        <a href="" class="btn btn-primary btn-sm">
-                                                            Evaluer à froid
+
+                                                        <a href="{{ route("ajouter_evaluation_froid_formation_participant", ["id"=>$formation->id_formation, "pt"=>$participant->id_utilisateur]) }}" class="btn btn-primary btn-sm">
+                                                            Evaluer à froid;
                                                         </a>
                                                     </td>
                                                 </tr>
@@ -97,11 +97,9 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div><!-- end card -->
+                                </div>
                             </div>
-                            <!-- end col -->
                         </div>
-                        <!-- end col -->
                     </div>
                 </div>
             </div>

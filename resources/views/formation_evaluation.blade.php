@@ -18,10 +18,8 @@
                                 <div class="card-header">
                                     <h4 class="card-title mb-0"> Evaluer les participants</h4>
                                 </div>
-
                                 <div class="card-body">
                                     <div id="customerList">
-
                                         <div class="table-responsive table-card mt-3 mb-1">
                                             <table class="table align-middle table-nowrap" id="customerTable">
                                                 <thead class="table-light">
@@ -66,7 +64,9 @@
                                                             @endif
                                                         </td>
                                                         <td>
-                                                            <a href="{{ route("evaluation_formation_participant", ["id"=>$liste_formation->id_formation]) }}" class="btn btn-primary btn-sm">Evaluer les participants</a>
+                                                            @if($liste_formation->date_fin < \Carbon\Carbon::now())
+                                                                <a href="{{ route("evaluation_formation_participant", ["id"=>$liste_formation->id_formation]) }}" class="btn btn-primary btn-sm">Evaluer les participants</a>
+                                                            @endif
                                                         </td>
                                                     </tr>
                                                 @endforeach

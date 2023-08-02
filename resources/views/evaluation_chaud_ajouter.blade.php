@@ -8,7 +8,15 @@
                     <h4 class="card-title mb-0 flex-grow-1">Evaluation à chaud de [ {{ $user->name }} ]</h4>
                 </div>
                 <div class="card-body">
-                    <form action="">
+                    <form action="{{ route("ajouter_evaluation_formation_participant_ok") }}" method="post">
+                        @csrf
+                        <div>
+                            <input name="id_formation" type="hidden" value="{{ $formation->id_formation }}">
+                            <input name="id_formateur" type="hidden" value="{{ $formation->formateur->id }}">
+                            <input name="id_formation_utilisateur" type="hidden" value="{{ $formation_utilisateur->id }}">
+                            <input name="id_cabinet" type="hidden" value="{{ $cabinet->id }}">
+                            <input name="id_utilisateur" type="hidden" value="{{ $user->id }}">
+                        </div>
                         <div class="row">
                             <div class="col-6">
                                 <div class="mb-3">
@@ -95,12 +103,12 @@
                                 @foreach($appreciation->appreciations as $libelle)
                                         <div class="col-6">
                                             <div class="mb-3">
-                                                <input readonly name="appreciation_{{ $libelle->id }}" value="{{ $libelle->libelle_appreciation }}" type="text" class="form-control" id="">
+                                                <input readonly name="id_appreciation[]" value="{{ $libelle->libelle_appreciation }}" type="text" class="form-control" id="">
                                             </div>
                                         </div>
                                         <div class="col-6">
                                             <div class="mb-3">
-                                                <select name="" id="" class="form-control">
+                                                <select name="appreciation[]" id="" class="form-control">
                                                     <option value="">Choississez une appréciation</option>
                                                     <option value="Très satisfaisant">Très satisfaisant</option>
                                                     <option value="Satisfaisant">Satisfaisant</option>
